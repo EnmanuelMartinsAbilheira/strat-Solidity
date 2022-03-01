@@ -33,9 +33,70 @@ contract A{
 }
 
 contract B{
-    
+    A a = new A();
+
+    function f() public view returns (uint){
+        return a.l();
+    }
+
 }
 
 contract C{
-    
+    // variable de estado privado
+    uint private data;
+
+    //variable de estado publica
+    uint public info;
+
+    constructor() public{
+        info = 10;
+    }
+
+    //funcion privada
+    function increment(uint a) private pure returns(uint) { return a + 1; }
+
+    //funciones publicas
+    function updateData(uint a) public { data = a;}
+    function getData() public view returns(uint) { return data; }
+    function compute(uint a, uint b) internal pure returns (uint) {return a + b; }
 }
+
+contract D{
+    C c = new C();
+
+    function readInfo() public view returns(uint){
+        return c.info();
+    }
+}
+
+contract E is C{
+    uint private result;
+    C private c;
+
+    constructor() public {
+        c = new C();
+    }
+
+    function getComputedResult() public{
+        result = compute(23, 5);
+    }
+    function getResult() public view returns(uint) { return result; }
+    function getNewData() public view returns(uint) { return c.info();}
+
+}
+
+
+/* 
+ 10 m,ll eurtos proyecto de 
+    
+        Kakza 
+        3333 * '',7 =233,33 ether
+        Italinos
+        3333   * 0.08 333,33 ether 
+        6666 * 0.1 
+        4 666 200. euros 
+
+        25mil = 5% 233.345€
+        10mil = 2% 93.300€
+
+*/
